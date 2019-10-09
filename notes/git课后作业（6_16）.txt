@@ -1,0 +1,63 @@
+﻿### 集中式版本控制与分布式版本控制的区别
+ 集中式版本控制-->可以到目录级别（CVS，SVN 2000年）  集中式版本需要联网才能工作（需要中央服务器）
+ 分布式版本控制-->可以在本地查看所有历史版本  分布式版本不需要中央服务器，每个人的电脑上都是一个完整的版本库
+### git常见命令
+* 标记暂存文件的命令   git stash   ; git 代码暂存列表信息：git stash list ;   git 代码应用暂存代码： git stash apply stash@{1}  ;  git 代码清空缓存 ：git stash clear
+* 提交文件的命令   git commit -m '必须要注释才能提交成功'
+* 查看工作区状况  git status
+* 拉取合并远程分支的操作   git merge 分支名
+* 查看提交记录命令       git log
+* 提交时发生冲突，你能解释冲突是如何产生的吗？ 答：有两个人同时修改了同一个文件
+* 我们在本地工程常会修改一些配置文件，这些文件不需要被提交，而我们又不想每次执行git status时都让这些文件显示出来，我们该如何操作？
+首先利用命令touch .gitignore新建文件
+
+$ touch .gitignore
+
+    1
+
+然后往文件中添加需要忽略哪些文件夹下的什么类型的文件
+
+$ vim .gitignore
+$ cat .gitignore
+/target/class
+.settings
+.imp
+*.ini
+
+    1
+    2
+    3
+    4
+    5
+    6
+
+注意：忽略/target/class文件夹下所有后缀名为.settings，.imp的文件，忽略所有后缀名为.ini的文件。
+
+
+* 将dev分支的内容合并到master分支
+先通过 git checkout master 命令到达master分支 ,再通过git merge dev将dev分支的内容合并到master分支
+* 如何向开源的项目贡献代码
+用PR（Pull Requests） 请求合并就ok
+
+
+### 三创的cali帐号下有一个`python2019Summer`项目，已添加为只读权限
+* Fork此项目到自己的帐号
+* 克隆Fork后的项目
+* 在homework分支，找到当天的作业目录，如”20190616-版本控制”目录下
+* 在目录下创建自己名字（中文）命名的目录，如“张三”，并在该目录下提交今天的作业。
+* 将完成后的作业提交pr
+
+
+### 课后拓展
+* 官方文档:https://git-scm.com/book/zh/v2/
+* 关于Git的20个面试题:https://segmentfault.com/a/1190000019315509
+
+
+
+新增文件的命令：git add file或者git add .
+提交文件的命令：git commit –m或者git commit –a
+查看工作区状况：git status –s
+拉取合并远程分支的操作：git fetch/git merge或者git pull
+查看提交记录命令：git reflog
+
+https://blog.csdn.net/nobody_1/article/details/88956315
