@@ -1,0 +1,12 @@
+# Python:
+*.py[cod]
+*.so
+*.egg
+*.egg-info
+dist
+build
+spider/content.tpl
+
+.vscode/settings.json
+que_c.html
+que.html
