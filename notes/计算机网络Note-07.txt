@@ -1,0 +1,46 @@
+扫描IP地址的脚本
+    import subprocess
+    from IPy import  IP
+    from time import  strftime,localtime
+    c_time = strftime("%Y%m%d_%H%M%S",localtime())
+    #每次扫描记录到一个文件里，文件名里添加当前的日期，精确到秒
+    # my_subnet = input("请输入你的网段，格式例如192.168.10.0/24")
+    mynet = IP("192.168.0.0/24")
+    for  i in list(mynet)[1:-1]:
+        print(i)
+        res = subprocess.run(f"ping {i} -n 1 -w 5", shell=True,stdout=subprocess.PIPE)
+    #ping命令的返回的内容中文显示问题
+        print(res.returncode)
+        with open(f"{c_time}_up.txt","a+") as f1:
+            with open(f"{c_time}_down.txt","a+") as f2:
+                if res.returncode == 0 :
+                    f1.write(str(i))
+                    f1.write("\n")
+                else:
+                    f2.write(str(i) + "\n")
+
+
+私有地址
+    满足企业用户在内部网络中使用的需求
+    私有地址不能在internet上使用
+    私有地址包括3组
+        A类：10.0.0.0~10.255.255.255
+        B类：172.16.0.0~172.31.255.255
+        C类：192.168.0.0~192.168.255.255
+
+子网掩码    
+    用来确定IP的网络部分
+
+IP地址的作用
+    用来标识一个节点的网络地址
+
+子网划分
+    实现方式 -- 网络位向主机位借位
+    无效IP -- 主机位全0（网段号）或全1（广播地址）
+
+ping的过程
+    首先用自己的ip地址和子网掩码与运算得出网段号
+    再拿要ping的ip地址和自己的子网掩码进行与运算得到网段号
+    比较两个网段号是否一样
+        如果一样，就发ARP广播得到ip地址对应的MAC地址，封装帧，让交换机送达。
+        如果不一样，需要经过路由器送达。

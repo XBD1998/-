@@ -1,0 +1,28 @@
+git clone http://  网站
+cd 目录
+git remote -v
+git remote add cali （cali是派生过来的库，homework分支下的链接）
+git pull cali master
+git config --global user.email "xiongbiao1998@foxmail.com"
+git config --global user.name "Derrick_x"
+git pull cali master      拉取仓库的master分支到本地
+git checkout homework     切换到homework分支
+git checkout -b homework_2   创建并切换到homework_2分支下
+git pull cali master    
+git pull cali homework
+git status   查看提交结果
+git push   将本地文件上传git 仓库
+
+在git上创建文件夹同样是用
+mkdir <文件名>
+cd <文件名>  进入到文件
+
+pwd   查看当前目录
+git add <文件名>  将文件添加到暂存区
+git add .    将当前目录下的所有文件都添加到暂存区
+git commit -m "此处添加本次提交的说明" //将文件从暂存区提交到仓库里
+git remote add origin git@github.com:XBD1998/practice.git //关联远程仓库
+git push -u origin master //把本地库的所有内容推送到远程库上
+git pull --rebase origin master  //更新git和本地仓库的文件，使其一致
+  
+ 
